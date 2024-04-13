@@ -97,9 +97,18 @@ int main(void)
 
   TIM2->CCR1 = 5;
   HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_1);
-  ARGB_Init();  // Initialization
-  ARGB_SetBrightness(100);  // Set global brightness to 40%
-  ARGB_Clear(); // Clear stirp
+    ARGB_Init();  // Initialization
+
+    ARGB_Clear(); // Clear stirp
+    ARGB_SetRGB(0, 255, 0, 0); // Set LED №3 with 255 Green
+    ARGB_SetRGB(1, 0, 255, 0); // Set LED №3 with 255 Green
+    ARGB_SetRGB(2, 0, 0, 255); // Set LED №3 with 255 Green
+    ARGB_SetRGB(3, 0, 255, 255); // Set LED №3 with 255 Green
+    ARGB_SetRGB(4, 255, 255, 0); // Set LED №3 with 255 Green
+    ARGB_SetRGB(5, 255, 0, 255); // Set LED №3 with 255 Green
+    ARGB_SetRGB(6, 123, 255, 234); // Set LED №3 with 255 Green
+    ARGB_SetRGB(7, 255, 255, 255); // Set LED №3 with 255 Green
+    while (ARGB_Show() != ARGB_OK);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -107,12 +116,8 @@ int main(void)
   while (1)
   {
 
-	  while (ARGB_Show() != ARGB_OK); // Update - Option 1
+    // Update - Option 1
 
-
-
-	      ARGB_FillRGB(0, 0, 200); // Fill all the strip with Red
-	      while (!ARGB_Show());
 
     /* USER CODE END WHILE */
 
@@ -197,10 +202,6 @@ static void MX_TIM1_Init(void)
     Error_Handler();
   }
   if (HAL_TIM_PWM_Init(&htim1) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  if (HAL_TIM_OnePulse_Init(&htim1, TIM_OPMODE_SINGLE) != HAL_OK)
   {
     Error_Handler();
   }
